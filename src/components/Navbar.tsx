@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import sqaudralogo from "../logos/squadaralogo.png";
+import sqaudralogo from "../utils/assets/logos/squadaralogo.png";
 import zIndex from "@mui/material/styles/zIndex";
 
 export default function Navbar() {
@@ -31,7 +31,13 @@ export default function Navbar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, color: "black" }}
+            sx={{
+              flexGrow: 1,
+              color: "black",
+              fontFamily: "Prompt",
+              fontWeight: 600,
+              fontSize: 24 + "px",
+            }}
           >
             Squadra
           </Typography>

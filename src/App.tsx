@@ -8,6 +8,7 @@ import WholeSaler from "./pages/WholeSaler";
 import SideBar from "./components/SideBar";
 import { Box } from "@mui/material";
 import Navbar from "./components/Navbar";
+import { routes } from "../src/utils/routes";
 
 import "./App.css";
 
@@ -19,10 +20,9 @@ function App() {
           <SideBar />
           <div style={{ flexGrow: 1 }}>
             <Routes>
-              <Route path="/userscreen" element={<UsersScreen />} />
-              <Route path="/" element={<RoleScreen />} />
-              <Route path="/companies" element={<CompaniesScreen />} />
-              <Route path="/wholesaler" element={<WholeSaler />} />
+              {routes.map((item, index) => (
+                <Route path={item.path} element={<item.cName />} />
+              ))}
             </Routes>
           </div>
         </div>

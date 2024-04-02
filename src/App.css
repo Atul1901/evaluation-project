@@ -1,3 +1,4 @@
+/* styling for sidebar */
 .selected {
   background-color: white !important;
 }
@@ -5,4 +6,250 @@
 .background-selected {
   background-color: #4d47c3;
   color: white !important;
+}
+
+/* styling for table */
+.table {
+  width: 100%;
+  text-align: center;
+  border-spacing: 0px 20px;
+  font-family: Poppins;
+}
+
+.table-heading-row {
+  font-size: 14px;
+  font-weight: normal;
+  font-weight: 300;
+  line-height: 21px;
+  text-align: left;
+  color: #505d68;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.table-data {
+  background: #f0efff;
+  margin-bottom: 10px;
+  border-spacing: 10px;
+  line-height: 38px;
+}
+
+.edit-del-logo {
+  display: flex;
+  justify-content: center;
+}
+
+/* table heading with add button and filter button */
+.table-heading-data {
+  margin-left: 15px;
+  width: 100%;
+}
+
+.heading-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-heading {
+  width: 58px;
+
+  top: 128px;
+  left: 345px;
+  gap: 0px;
+  opacity: 0px;
+
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24.38px;
+  text-align: left;
+  color: #4d47c3;
+}
+
+.heading-buttons {
+  /* vertical-align: middle; */
+  align-items: center;
+
+  display: flex;
+  gap: 28px;
+}
+
+.add-button {
+  width: Hug (82px) px;
+  height: Hug (36px) px;
+  top: 129px;
+  left: 1563px;
+  padding: 9px 25px 9px 25px;
+  gap: 10px;
+  border-radius: 6px;
+  opacity: 0px;
+  background: #4d47c3;
+  color: white;
+
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18.29px;
+  text-align: left;
+  border: none;
+}
+
+.filter-button {
+  width: Hug (124px) px;
+  height: Hug (36px) px;
+  top: 129px;
+  left: 1673px;
+  padding: 9px 25px 9px 25px;
+  gap: 10px;
+  border-radius: 6px;
+  opacity: 0px;
+  background: #4d47c3;
+  color: white;
+
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18.29px;
+  text-align: left;
+  display: flex;
+  gap: 7px;
+  border: none;
+}
+
+.filter-logo {
+  width: 18px;
+  height: 15.3px;
+  top: 2px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+/* styling for pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  width: 78%;
+  bottom: 0;
+}
+
+/*add-modal styling  */
+.add-modal-heading {
+  display: flex;
+
+  align-items: center;
+  color: #4d47c3;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 20px;
+  justify-content: space-between;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.head-clear {
+  display: flex;
+  gap: 15px;
+}
+.close-modal {
+  background-color: #f0efff;
+  border-radius: 5px;
+  height: 25px;
+}
+
+.clear-filter-button {
+  width: Hug (99px) px;
+  height: 31px;
+  top: 13px;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  text-align: left;
+  background-color: transparent;
+  border-radius: 6px;
+  border: 1px solid #4d47c3;
+  color: #4d47c3;
+}
+
+.input-field {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.input-data {
+  /* flex-basis: calc(100% / 3); Set width for 3 items per row */
+  padding: 5px;
+}
+
+.place-input {
+  width: 280px;
+  height: 40px;
+  top: 426px;
+  left: 322px;
+  gap: 0px;
+  border-radius: 6px;
+  opacity: 0px;
+  background: #f0efff;
+  border: none;
+  outline: none;
+}
+
+.input-field-name {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  text-align: left;
+  color: #636363;
+}
+
+.modal-add-button {
+  margin-top: 40px;
+  width: Hug (158px) px;
+  height: Hug (46px) px;
+  top: 647px;
+  left: 322px;
+  padding: 14px 60px 14px 61px;
+  gap: 10px;
+  border-radius: 6px;
+  font-family: Montserrat;
+  opacity: 0px;
+  background: #4d47c3;
+  color: white;
+  border: none;
+}
+
+/* delete modal */
+.delete-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-button {
+  width: Hug (160px) px;
+  height: Hug (44px) px;
+  padding: 13px 54px 13px 54px;
+  border-radius: 6px;
+  border: 1px solid #4d47c3;
+  background: #4d47c31a;
+
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18.29px;
+  text-align: left;
+  color: #4d47c3;
+}
+
+.yes-button {
+  width: Hug (160px) px;
+  height: Hug (44px) px;
+  padding: 13px 40px 13px 40px;
+
+  border-radius: 6px;
+  border: none;
+  background: #4d47c3;
 }
