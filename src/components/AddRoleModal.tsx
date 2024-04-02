@@ -9,6 +9,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Divider } from "@mui/material";
 import DatePicking from "./DatePicking";
 import { getUsersData } from "../utils/DummyData";
+
+import { useDispatch } from "react-redux";
+import { addRole } from "../utils/redux/reducers/roles/RoleSlice";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -24,6 +27,8 @@ const style = {
 };
 
 export default function AddRoleModal() {
+  const dispatch = useDispatch();
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -56,6 +61,7 @@ export default function AddRoleModal() {
     console.log("data:", inputData);
     handleClose();
     getUsersData.data.push(reqData);
+    dispatch(addRole(reqData));
   };
 
   return (

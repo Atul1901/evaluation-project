@@ -1,13 +1,25 @@
 import React from "react";
+import { useEffect } from "react";
 import edit from "../utils/assets/logos/Edit.png";
 import deleteLogo from "../utils/assets/logos/Vector.png";
 import filterLogo from "../utils/assets/logos/Vector (1).png";
 import EditRoleModal from "./EditRoleModal";
 import DeleteModal from "./DeleteModal";
+import { useSelector } from "react-redux";
+import { GetRolesData } from "../utils/redux/reducers/roles/RoleSlice";
 
-import { getUsersData } from "../utils/DummyData";
+// import { getUsersData } from "../utils/DummyData";
 
 function Table() {
+  // const data = useSelector(GetRolesData);
+  const data = useSelector((state: any) => {
+    return state.roles;
+    // console.log("state:", state);
+  });
+  // console.log("redux-data:", data);
+  useEffect(() => {
+    console.log("redux-data:", data);
+  }, [data]);
   return (
     <div>
       <table className="table">
@@ -23,8 +35,8 @@ function Table() {
         </thead>
 
         <tbody className="table-data">
-          {getUsersData &&
-            getUsersData?.data?.map((item, key) => {
+          {data &&
+            data?.map((item: any, key: any) => {
               return (
                 <>
                   <tr key={key}>
