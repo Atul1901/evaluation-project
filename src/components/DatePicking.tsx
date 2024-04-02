@@ -4,7 +4,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-export default function DatePicking({ setInputData, inputData }: any) {
+export default function DatePicking({ setInputData, inputData, item }: any) {
   const [selectedDate, setSelectedDate] = React.useState(null);
 
   // const onHandleChange = (event: any, name: string) => {
@@ -27,7 +27,7 @@ export default function DatePicking({ setInputData, inputData }: any) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={["DatePicker"]} sx={{ paddingTop: 0 }}>
         <DatePicker
-          label="Basic date picker"
+          label={item?.created_date}
           onChange={handleDataChange}
           sx={{
             padding: 0,

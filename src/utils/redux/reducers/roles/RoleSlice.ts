@@ -1,20 +1,21 @@
 // import { lightGreen } from "@mui/material/colors";
 import { createSlice } from "@reduxjs/toolkit";
+import {
+  saveToStorage,
+  clearStorage,
+  removeFromStorage,
+  fetchFromStorage,
+} from "../../../localStorage";
+
+const fromStorage: RoleSlice[] = fetchFromStorage("rolesLocalData");
+interface RoleSlice {}
 const RoleSlice = createSlice({
   name: "roles",
-  initialState: [
-    {
-      user_name: "",
-      organization_name: "",
-      created_date: "",
-      role_state: "",
-      role_id: "",
-    },
-  ],
+  initialState: fetchFromStorage("rolesLocalData") || ([] as RoleSlice[]),
   reducers: {
     addRole(state, action) {
-      // state.push(action.payload);
-      state = [...state, action.payload];
+      state.push(action.payload);
+      // state = [...state, action.payload];
       console.log("action.payload:", action.payload);
       console.log("state", state);
     },

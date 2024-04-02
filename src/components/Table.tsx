@@ -46,7 +46,7 @@ function Table() {
                     <td>{item?.role_state}</td>
                     <td>{item?.role_id} </td>
                     <td className="edit-del-logo">
-                      <EditRoleModal />
+                      <EditRoleModal item={item} />
                       <DeleteModal />
                     </td>
                   </tr>

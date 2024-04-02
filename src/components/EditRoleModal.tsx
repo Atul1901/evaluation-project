@@ -24,7 +24,7 @@ const style = {
   border: "none",
 };
 
-export default function EditRoleModal() {
+export default function EditRoleModal({ item }: any) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -61,22 +61,30 @@ export default function EditRoleModal() {
           <div className="input-field">
             <div className="input-data">
               <p className="input-field-name">Role Name</p>
-              <input type="text" className="place-input"></input>
+              <input
+                type="text"
+                className="place-input"
+                placeholder={item.user_name}
+              ></input>
             </div>
             <div className="input-data">
               <p className="input-field-name">Organization Name</p>
-              <input type="text" className="place-input"></input>
+              <input
+                type="text"
+                className="place-input"
+                placeholder={item.organization_name}
+              ></input>
             </div>
             <div className="input-data">
               <p className="input-field-name">Created Date</p>
               {/* <input type="text" className="place-input"></input> */}
-              <DatePicking />
+              <DatePicking item={item} />
             </div>
             <div className="input-data">
               <p className="input-field-name">Role State</p>
               {/* <input type="text" className="place-input"></input> */}
               <select id="status" name="status" className="place-input">
-                <option value=""></option>
+                <option value="">{item.role_state}</option>
                 <option
                   value="active"
                   style={{ fontFamily: "Poppins", fontWeight: 400 }}
@@ -93,7 +101,11 @@ export default function EditRoleModal() {
             </div>
             <div className="input-data">
               <p className="input-field-name">Role ID</p>
-              <input type="text" className="place-input"></input>
+              <input
+                type="text"
+                className="place-input"
+                placeholder={item.role_id}
+              ></input>
             </div>
           </div>
           <div>
