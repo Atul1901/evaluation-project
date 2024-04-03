@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { addRole } from "../utils/redux/reducers/roles/RoleSlice";
 import uniqid from "uniqid";
 import SuccessPop from "./SuccessPop";
+import { checkValidation } from "../utils/helpers";
 
 const style = {
   position: "absolute" as "absolute",
@@ -29,6 +30,13 @@ export default function AddRoleModal() {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [isSnackBar, setSnackBar] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = React.useState({
+    roleName: "",
+    roleID: "",
+    organizationName: "",
+    createdDate: "",
+    roleState: "",
+  });
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
@@ -44,13 +52,20 @@ export default function AddRoleModal() {
     uniqID: "",
   });
 
-  const onHandleChange = (event: any, name: string) => {
+  const onHandleChange = (event: any, field: string) => {
     let { value } = event.target;
-    console.log("name:", name, "value:", value);
+    const Validation = checkValidation(field, value);
+    if (!Validation.isValid) {
+      setErrorMessage({ ...errorMessage, [field]: Validation.errorMessage });
+    } else {
+      setErrorMessage({ ...errorMessage, [field]: "" });
+    }
+    console.log("name:", field, "value:", value);
+
     value = value.toUpperCase();
     setInputData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [field]: value,
     }));
   };
 
@@ -110,9 +125,15 @@ export default function AddRoleModal() {
               <p className="input-field-name">Role Name</p>
               <input
                 type="text"
-                className="place-input"
+                // className="place-input"
                 onChange={(e) => onHandleChange(e, "roleName")}
+                className={
+                  errorMessage.roleName ? "place-input error" : "place-input"
+                }
               ></input>
+              {errorMessage.roleName && (
+                <p style={{ color: "red" }}>{errorMessage.roleName}</p>
+              )}
             </div>
             <div className="input-data">
               <p className="input-field-name">Organization Name</p>
@@ -159,9 +180,16 @@ export default function AddRoleModal() {
               <p className="input-field-name">Role ID</p>
               <input
                 type="text"
-                className="place-input"
+                // className="place-input"
+                className={
+                  errorMessage.roleID ? "place-input error" : "place-input"
+                }
                 onChange={(e) => onHandleChange(e, "roleID")}
+                // className={errorMessage.roleID && "error"}
               ></input>
+              {errorMessage.roleID && (
+                <p style={{ color: "red" }}>{errorMessage.roleID}</p>
+              )}
             </div>
           </div>
           <div>

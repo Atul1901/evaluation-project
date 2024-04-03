@@ -259,7 +259,8 @@ input:invalid {
 }
 
 .error {
-  border-color: red;
+  background: #ff00001a;
+  border: 1px solid #ff0000;
 }
 
 /* successfully added role popup */
