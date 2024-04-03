@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-
 import Modal from "@mui/material/Modal";
 import "../App.css";
-
 import CloseIcon from "@mui/icons-material/Close";
 import { Divider } from "@mui/material";
 import DatePicking from "./DatePicking";
 import { getUsersData } from "../utils/DummyData";
-
 import { useDispatch } from "react-redux";
 import { addRole } from "../utils/redux/reducers/roles/RoleSlice";
 import uniqid from "uniqid";
@@ -22,7 +19,6 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 1000,
   bgcolor: "background.paper",
-
   boxShadow: 24,
   p: 4,
   borderRadius: 5,
@@ -31,7 +27,6 @@ const style = {
 
 export default function AddRoleModal() {
   const dispatch = useDispatch();
-
   const [open, setOpen] = React.useState(false);
   const [isSnackBar, setSnackBar] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
@@ -139,7 +134,6 @@ export default function AddRoleModal() {
             </div>
             <div className="input-data">
               <p className="input-field-name">Role State</p>
-
               <select
                 id="status"
                 name="status"

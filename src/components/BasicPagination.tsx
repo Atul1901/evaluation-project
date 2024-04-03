@@ -17,13 +17,13 @@ export default function BasicPagination() {
   };
   return (
     <Stack spacing={2}>
-      <TablePagination
-        count={10}
+      <Pagination
+        count={5}
         color="primary"
         page={page}
-        onPageChange={handleChangePage}
-        rowsPerPage={rowsPerPage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        // onPageChange={handleChangePage}
+        // rowsPerPage={rowsPerPage}
+        // onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Stack>
   );

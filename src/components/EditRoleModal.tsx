@@ -17,7 +17,6 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 1000,
   bgcolor: "background.paper",
-
   boxShadow: 24,
   p: 4,
   borderRadius: 5,
@@ -26,7 +25,6 @@ const style = {
 
 export default function EditRoleModal({ item }: any) {
   const dispatch = useDispatch();
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -47,9 +45,7 @@ export default function EditRoleModal({ item }: any) {
       role_id: inputData.roleID,
       uniq_id: item.uniq_id,
     };
-
     handleClose();
-
     dispatch(editRole(reqData));
   };
 
@@ -101,7 +97,6 @@ export default function EditRoleModal({ item }: any) {
             </div>
             <div className="input-data">
               <p className="input-field-name">Created Date</p>
-
               <DatePicking
                 item={item}
                 setInputData={setInputData}
@@ -110,7 +105,6 @@ export default function EditRoleModal({ item }: any) {
             </div>
             <div className="input-data">
               <p className="input-field-name">Role State</p>
-
               <select
                 id="status"
                 name="status"

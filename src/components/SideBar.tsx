@@ -117,14 +117,14 @@ export default function SideBar() {
         </DrawerHeader>
         <Divider />
         {menu.map((item, index) => (
-          <List key={index}>
+          <List key={index} sx={{ height: 40 }}>
             <ListItem
               onClick={() => {
                 handleSelect(item.id, index);
                 handleSubmit(item.link);
               }}
               disablePadding
-              sx={{ display: "flex" }}
+              sx={{ display: "flex", height: 40 }}
               className={isId === index + 1 ? "background-selected" : ""}
             >
               <ListItemButton

@@ -17,12 +17,12 @@ function Table() {
       <table className="table">
         <thead className="table-heading-row">
           <tr>
-            <th>Role Name</th>
-            <th>Organization Name</th>
-            <th>Created Date</th>
-            <th>Role State</th>
-            <th>Role ID</th>
-            <th>Actions</th>
+            <th className="table-heading-row">Role Name</th>
+            <th className="table-heading-row">Organization Name</th>
+            <th className="table-heading-row">Created Date</th>
+            <th className="table-heading-row">Role State</th>
+            <th className="table-heading-row">Role ID</th>
+            <th className="table-heading-row">Actions</th>
           </tr>
         </thead>
 

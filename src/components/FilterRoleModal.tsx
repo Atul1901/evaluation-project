@@ -14,7 +14,6 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 666,
   bgcolor: "background.paper",
-
   boxShadow: 24,
   p: 4,
   borderRadius: 5,
@@ -30,7 +29,6 @@ export default function FilterRoleModal() {
   const [createdDate, setCreatedDate] = React.useState("");
   const [roleState, setRoleState] = React.useState("");
   const [roleID, setRoleID] = React.useState("");
-
   const [errorMessage, setErrorMessage] = React.useState("");
 
   const clearFields = () => {
@@ -40,17 +38,38 @@ export default function FilterRoleModal() {
     setRoleState("");
     setRoleID("");
   };
+  const checkValidation = (field: string, value: any) => {
+    let isValid = false;
+    let Validation = {
+      isValid: false,
+      errorMessage: "",
+    };
+    console.log("field:", field);
+    switch (field) {
+      case "roleID":
+        Validation.isValid = /^[0-9A-Za-z]{0,6}$/.test(value);
+        Validation.errorMessage = "enter valid role ID";
+        console.log("roleid case");
+        break;
 
-  const handleChange = (e: any) => {
+      case "organizationName":
+        Validation.isValid = /^[0-9A-Za-z]{0,6}$/.test(value);
+        Validation.errorMessage = "enter valid organization name";
+        console.log("org case");
+        break;
+    }
+    return Validation;
+  };
+  const handleChange = (e: any, field: string) => {
     const value = e.target.value;
-    const isValid = /^[0-9A-Za-z]{0,6}$/.test(value);
+    const Validation = checkValidation(field, value);
 
-    if (!isValid) {
-      setErrorMessage("Please enter a maximum of 6 alphanumeric characters");
+    console.log("validation:", Validation);
+    if (!Validation.isValid) {
+      setErrorMessage(Validation.errorMessage);
     } else {
       setErrorMessage("");
     }
-
     setRoleID(value);
   };
 
@@ -109,6 +128,7 @@ export default function FilterRoleModal() {
                 value={organizationName}
                 onChange={(e) => setOrganizationName(e.target.value)}
               ></input>
+              {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
             </div>
             <div className="input-data">
               <p className="input-field-name">Created Date</p>
@@ -153,14 +173,14 @@ export default function FilterRoleModal() {
                 style={
                   (errorMessage && {
                     background: "#FF00001A",
-                    borderColor: "#FF0000",
+                    border: "1px solid #FF0000",
                   }) ||
                   {}
                 }
                 pattern="[0-9A-Za-z]{6}"
                 title="Please enter a 6-digit alphanumeric value"
                 value={roleID}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e, "roleID")}
               ></input>
               {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
             </div>
