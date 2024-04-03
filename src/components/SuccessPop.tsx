@@ -20,7 +20,7 @@ const SuccessPop: React.FC<Props> = ({ showSnackbar }) => {
           borderRadius: 5,
         }}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        autoHideDuration={1000}
+        autoHideDuration={5000}
         open={showSnackbar && isAlert}
         onClose={handleClose}
       >

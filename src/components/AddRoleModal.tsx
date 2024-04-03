@@ -39,11 +39,6 @@ export default function AddRoleModal() {
     createdDate: "",
     roleState: "",
   });
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false);
-    reset();
-  };
 
   const [inputData, setInputData] = React.useState({
     roleName: "",
@@ -53,6 +48,13 @@ export default function AddRoleModal() {
     roleID: "",
     uniqID: "",
   });
+
+  const isEmptyIsError = checkEmpty(inputData) || checkError(errorMessage);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    reset();
+  };
 
   const onHandleChange = (event: any, field: string) => {
     let { value } = event.target;
@@ -83,11 +85,14 @@ export default function AddRoleModal() {
   };
 
   const onSubmit = () => {
-    const isEmpty = checkEmpty(inputData);
-    const isError = checkError(errorMessage);
-    if (isError || isEmpty) {
+    if (isEmptyIsError) {
       return;
     }
+    // const isEmpty = checkEmpty(inputData);
+    // const isError = checkError(errorMessage);
+    // if (isError || isEmpty) {
+    //   return;
+    // }
     const reqData = {
       user_name: inputData.roleName,
       organization_name: inputData.organizationName,
@@ -139,7 +144,7 @@ export default function AddRoleModal() {
                 }
               ></input>
               {errorMessage.roleName && (
-                <p style={{ color: "red" }}>{errorMessage.roleName}</p>
+                <p className="error-text">{errorMessage.roleName}</p>
               )}
             </div>
             <div className="input-data">
@@ -195,12 +200,19 @@ export default function AddRoleModal() {
                 // className={errorMessage.roleID && "error"}
               ></input>
               {errorMessage.roleID && (
-                <p style={{ color: "red" }}>{errorMessage.roleID}</p>
+                <p className="error-text">{errorMessage.roleName}</p>
               )}
             </div>
           </div>
           <div>
-            <button className="modal-add-button" onClick={onSubmit}>
+            <button
+              onClick={onSubmit}
+              className={
+                isEmptyIsError
+                  ? "modal-add-button disable-btn"
+                  : "modal-add-button "
+              }
+            >
               ADD
             </button>
           </div>

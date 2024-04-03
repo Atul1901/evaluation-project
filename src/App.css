@@ -254,6 +254,7 @@
   background: #4d47c3;
 }
 
+/* validation errors */
 input:invalid {
   border-color: red;
 }
@@ -263,6 +264,19 @@ input:invalid {
   border: 1px solid #ff0000;
 }
 
+.error-text {
+  margin-top: 6px;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 21px;
+  text-align: left;
+  color: red;
+}
+.disable-btn {
+  background: grey;
+}
+/* has context menu */
 /* successfully added role popup */
 .popup-modal {
   border-radius: 5px;
