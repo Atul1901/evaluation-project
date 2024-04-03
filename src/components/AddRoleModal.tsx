@@ -118,7 +118,7 @@ export default function AddRoleModal() {
       >
         Add
       </Button>
-      <SuccessPop showSnackbar={isSnackBar} />
+      <SuccessPop showSnackbar={isSnackBar} setSnackBar={setSnackBar} />
       <Modal
         open={open}
         aria-labelledby="modal-modal-title"

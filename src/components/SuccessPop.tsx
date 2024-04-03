@@ -4,13 +4,15 @@ import Alert from "@mui/material/Alert";
 
 interface Props {
   showSnackbar: boolean; // Define boolean prop
+  setSnackBar: any;
 }
 
-const SuccessPop: React.FC<Props> = ({ showSnackbar }) => {
-  const [isAlert, setAlert] = useState<boolean>(true);
+const SuccessPop: React.FC<Props> = ({ showSnackbar, setSnackBar }) => {
+  // const [isAlert, setAlert] = useState<boolean>(true);
 
   const handleClose = () => {
-    setAlert(false);
+    // setAlert(false);
+    setSnackBar(false);
   };
 
   return (
@@ -21,7 +23,7 @@ const SuccessPop: React.FC<Props> = ({ showSnackbar }) => {
         }}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         autoHideDuration={5000}
-        open={showSnackbar && isAlert}
+        open={showSnackbar}
         onClose={handleClose}
       >
         <Alert
