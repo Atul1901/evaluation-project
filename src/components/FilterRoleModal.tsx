@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+
 import Modal from "@mui/material/Modal";
 import "../App.css";
 
@@ -28,6 +28,19 @@ export default function FilterRoleModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [roleName, setRoleName] = React.useState("");
+  const [organizationName, setOrganizationName] = React.useState("");
+  const [createdDate, setCreatedDate] = React.useState("");
+  const [roleState, setRoleState] = React.useState("");
+  const [roleID, setRoleID] = React.useState("");
+
+  const clearFields = () => {
+    setRoleName("");
+    setOrganizationName("");
+    setCreatedDate("");
+    setRoleState("");
+    setRoleID("");
+  };
 
   return (
     <div>
@@ -50,21 +63,16 @@ export default function FilterRoleModal() {
       </Button>
       <Modal
         open={open}
-        // onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography> */}
           <div className="add-modal-heading">
             <p>Filters</p>
             <div className="head-clear">
-              <button className="clear-filter-button">Clear Filter</button>
+              <button className="clear-filter-button" onClick={clearFields}>
+                Clear Filter
+              </button>
               <div className="close-modal" onClick={handleClose}>
                 <CloseIcon />
               </div>
@@ -74,25 +82,41 @@ export default function FilterRoleModal() {
           <div className="input-field">
             <div className="input-data">
               <p className="input-field-name">Role Name</p>
-              <input type="text" className="place-input"></input>
+              <input
+                type="text"
+                className="place-input"
+                value={roleName}
+                onChange={(e) => setRoleName(e.target.value)}
+              ></input>
             </div>
             <div className="input-data">
               <p className="input-field-name">Organization Name</p>
-              <input type="text" className="place-input"></input>
+              <input
+                type="text"
+                className="place-input"
+                value={organizationName}
+                onChange={(e) => setOrganizationName(e.target.value)}
+              ></input>
             </div>
             <div className="input-data">
               <p className="input-field-name">Created Date</p>
-              {/* <input type="text" className="place-input"></input> */}
-              <DatePicking />
+
+              <input
+                type="text"
+                className="place-input"
+                value={createdDate}
+                onChange={(e) => setCreatedDate(e.target.value)}
+              ></input>
             </div>
             <div className="input-data">
               <p className="input-field-name">Role State</p>
-              {/* <input type="text" className="place-input"></input> */}
+
               <select
                 id="status"
                 name="status"
                 className="place-input"
-                // onChange={(e) => onHandleChange(e, "roleState")}
+                value={roleState}
+                onChange={(e) => setRoleState(e.target.value)}
               >
                 <option value=""></option>
                 <option
@@ -111,11 +135,18 @@ export default function FilterRoleModal() {
             </div>
             <div className="input-data">
               <p className="input-field-name">Role ID</p>
-              <input type="text" className="place-input"></input>
+              <input
+                type="text"
+                className="place-input"
+                value={roleID}
+                onChange={(e) => setRoleID(e.target.value)}
+              ></input>
             </div>
           </div>
           <div>
-            <button className="modal-add-button">Continue</button>
+            <button className="modal-add-button" onClick={handleClose}>
+              Continue
+            </button>
           </div>
         </Box>
       </Modal>

@@ -1,12 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import "./Dash.css";
-// import Sidenav from "./components/Sidenav";
-import CompaniesScreen from "./pages/CompaniesScreen";
-import UsersScreen from "./pages/UsersScreen";
-import RoleScreen from "./pages/RoleScreen";
-import WholeSaler from "./pages/WholeSaler";
 import SideBar from "./components/SideBar";
-import { Box } from "@mui/material";
 import Navbar from "./components/Navbar";
 import { routes } from "../src/utils/routes";
 

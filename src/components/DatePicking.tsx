@@ -7,14 +7,6 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 export default function DatePicking({ setInputData, inputData, item }: any) {
   const [selectedDate, setSelectedDate] = React.useState(null);
 
-  // const onHandleChange = (event: any, name: string) => {
-  //   const { value } = event.target;
-  //   console.log("name:", name, "value:", value);
-  //   setInputData((prevData) => ({
-  //     ...prevData,
-  //     [name]: value,
-  //   }));
-
   const handleDataChange = (date: any) => {
     // setSelectedDate(date);
     setInputData((prevData: any) => ({

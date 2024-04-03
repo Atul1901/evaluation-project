@@ -12,6 +12,8 @@ import { getUsersData } from "../utils/DummyData";
 
 import { useDispatch } from "react-redux";
 import { addRole } from "../utils/redux/reducers/roles/RoleSlice";
+import uniqid from "uniqid";
+
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -31,7 +33,10 @@ export default function AddRoleModal() {
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    reset();
+  };
 
   const [inputData, setInputData] = React.useState({
     roleName: "",
@@ -39,15 +44,28 @@ export default function AddRoleModal() {
     createdDate: "",
     roleState: "",
     roleID: "",
+    uniqID: "",
   });
 
   const onHandleChange = (event: any, name: string) => {
-    const { value } = event.target;
+    let { value } = event.target;
     console.log("name:", name, "value:", value);
+    value = value.toUpperCase();
     setInputData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const reset = () => {
+    setInputData({
+      roleName: "",
+      organizationName: "",
+      createdDate: "",
+      roleState: "",
+      roleID: "",
+      uniqID: "",
+    });
   };
 
   const onSubmit = () => {
@@ -57,6 +75,7 @@ export default function AddRoleModal() {
       created_date: inputData.createdDate,
       role_state: inputData.roleState,
       role_id: inputData.roleID,
+      uniq_id: uniqid(),
     };
     console.log("data:", inputData);
     handleClose();
@@ -105,14 +124,8 @@ export default function AddRoleModal() {
             </div>
             <div className="input-data">
               <p className="input-field-name">Created Date</p>
-              {/* <input
-                className="place-input"
-                onChange={(e) => onHandleChange(e, "createdDate")}
-              ></input> */}
-              <div
-              // className="place-input"
-              // onChange={(e: any) => onHandleChange(e, "createdDate")}
-              >
+
+              <div>
                 <DatePicking
                   setInputData={setInputData}
                   inputData={inputData}
@@ -121,11 +134,7 @@ export default function AddRoleModal() {
             </div>
             <div className="input-data">
               <p className="input-field-name">Role State</p>
-              {/* <input
-                type="text"
-                className="place-input"
-                onChange={(e) => onHandleChange(e, "roleState")}
-              ></input> */}
+
               <select
                 id="status"
                 name="status"

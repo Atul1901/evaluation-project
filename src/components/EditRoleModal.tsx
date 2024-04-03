@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+
 import Modal from "@mui/material/Modal";
 import "../App.css";
 
@@ -10,6 +10,10 @@ import { Divider } from "@mui/material";
 
 import edit from "../utils/assets/logos/Edit.png";
 import DatePicking from "./DatePicking";
+
+import { useDispatch } from "react-redux";
+import { editRole } from "../utils/redux/reducers/roles/RoleSlice";
+
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -25,32 +29,54 @@ const style = {
 };
 
 export default function EditRoleModal({ item }: any) {
+  const dispatch = useDispatch();
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [inputData, setInputData] = React.useState({
+    roleName: item.user_name,
+    organizationName: item.organization_name,
+    createdDate: item.created_date,
+    roleState: item.role_state,
+    roleID: item.role_id,
+  });
+
+  const onSubmit = () => {
+    const reqData = {
+      user_name: inputData.roleName,
+      organization_name: inputData.organizationName,
+      created_date: inputData.createdDate,
+      role_state: inputData.roleState,
+      role_id: inputData.roleID,
+      uniq_id: item.uniq_id,
+    };
+
+    handleClose();
+
+    dispatch(editRole(reqData));
+  };
+
+  const onHandleChange = (event: any, name: string) => {
+    let { value } = event.target;
+    value = value.toUpperCase();
+    setInputData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   return (
     <div>
-      <Button
-        onClick={handleOpen}
-        // variant="contained"
-        sx={{ fontFamily: "Montserrat" }}
-      >
+      <Button onClick={handleOpen} sx={{ fontFamily: "Montserrat" }}>
         <img src={edit} alt="edit logo" />
       </Button>
       <Modal
         open={open}
-        // onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography> */}
           <div className="add-modal-heading">
             <p>Edit Role</p>
             <div className="close-modal" onClick={handleClose}>
@@ -65,6 +91,7 @@ export default function EditRoleModal({ item }: any) {
                 type="text"
                 className="place-input"
                 placeholder={item.user_name}
+                onChange={(e) => onHandleChange(e, "roleName")}
               ></input>
             </div>
             <div className="input-data">
@@ -73,17 +100,27 @@ export default function EditRoleModal({ item }: any) {
                 type="text"
                 className="place-input"
                 placeholder={item.organization_name}
+                onChange={(e) => onHandleChange(e, "organizationName")}
               ></input>
             </div>
             <div className="input-data">
               <p className="input-field-name">Created Date</p>
-              {/* <input type="text" className="place-input"></input> */}
-              <DatePicking item={item} />
+
+              <DatePicking
+                item={item}
+                setInputData={setInputData}
+                inputData={inputData}
+              />
             </div>
             <div className="input-data">
               <p className="input-field-name">Role State</p>
-              {/* <input type="text" className="place-input"></input> */}
-              <select id="status" name="status" className="place-input">
+
+              <select
+                id="status"
+                name="status"
+                className="place-input"
+                onChange={(e) => onHandleChange(e, "roleState")}
+              >
                 <option value="">{item.role_state}</option>
                 <option
                   value="active"
@@ -105,11 +142,14 @@ export default function EditRoleModal({ item }: any) {
                 type="text"
                 className="place-input"
                 placeholder={item.role_id}
+                onChange={(e) => onHandleChange(e, "roleID")}
               ></input>
             </div>
           </div>
           <div>
-            <button className="modal-add-button">Update</button>
+            <button className="modal-add-button" onClick={onSubmit}>
+              Update
+            </button>
           </div>
         </Box>
       </Modal>
