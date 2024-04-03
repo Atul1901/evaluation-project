@@ -1,17 +1,32 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Pagination } from "@mui/material";
 import EditRoleModal from "./EditRoleModal";
 import DeleteModal from "./DeleteModal";
 import { useSelector } from "react-redux";
 
 function Table() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
   const data = useSelector((state: any) => {
     return state.roles;
   });
 
-  useEffect(() => {
-    console.log("redux-data:", data);
-  }, [data]);
+  // useEffect(() => {
+  //   console.log("redux-data:", data);
+  // }, [data]);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    page: number
+  ) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div>
       <table className="table">
@@ -27,26 +42,31 @@ function Table() {
         </thead>
 
         <tbody className="table-data">
-          {data &&
-            data?.map((item: any, key: any) => {
+          {currentItems &&
+            currentItems.map((item: any, key: any) => {
               return (
-                <>
-                  <tr key={key}>
-                    <td>{item?.user_name}</td>
-                    <td>{item?.organization_name}</td>
-                    <td>{item?.created_date}</td>
-                    <td>{item?.role_state}</td>
-                    <td>{item?.role_id} </td>
-                    <td className="edit-del-logo">
-                      <EditRoleModal item={item} />
-                      <DeleteModal uniqID={item.uniq_id} />
-                    </td>
-                  </tr>
-                </>
+                <tr key={key}>
+                  <td>{item?.user_name}</td>
+                  <td>{item?.organization_name}</td>
+                  <td>{item?.created_date}</td>
+                  <td>{item?.role_state}</td>
+                  <td>{item?.role_id} </td>
+                  <td className="edit-del-logo">
+                    <EditRoleModal item={item} />
+                    <DeleteModal uniqID={item.uniq_id} />
+                  </td>
+                </tr>
               );
             })}
         </tbody>
       </table>
+      <Pagination
+        count={Math.ceil(data.length / itemsPerPage)}
+        page={currentPage}
+        onChange={handlePageChange}
+        color="primary"
+        className="pagination"
+      />
     </div>
   );
 }

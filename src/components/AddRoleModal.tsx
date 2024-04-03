@@ -86,7 +86,7 @@ export default function AddRoleModal() {
 
   const onSubmit = () => {
     if (isEmptyIsError) {
-      return;
+      // return;
     }
     // const isEmpty = checkEmpty(inputData);
     // const isError = checkError(errorMessage);
@@ -200,7 +200,7 @@ export default function AddRoleModal() {
                 // className={errorMessage.roleID && "error"}
               ></input>
               {errorMessage.roleID && (
-                <p className="error-text">{errorMessage.roleName}</p>
+                <p className="error-text">{errorMessage.roleID}</p>
               )}
             </div>
           </div>

@@ -11,9 +11,6 @@ function RoleScreen() {
         <TableHeading />
         <Divider />
         <Table />
-        <div className="pagination">
-          <BasicPagination />
-        </div>
       </Box>
     </>
   );
