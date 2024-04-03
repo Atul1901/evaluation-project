@@ -2,20 +2,15 @@ import React, { useState } from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
-
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
-
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-
 import "../App.css";
-
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useNavigate } from "react-router-dom";
 
@@ -47,13 +42,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
-
-// interface AppBarProps extends MuiAppBarProps {
-//   open?: boolean;
-// }
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -106,12 +96,9 @@ export default function SideBar() {
   const [open, setOpen] = React.useState(true);
 
   const handleSubmit = (route: string) => {
-    // Handle form submission
     navigate(route);
   };
 
-  //ustate for the colours of the selected sidebar icon
-  // const [selected, setSelected] = React.useState(0);
   const [isId, setIsId] = useState<number>(-1);
 
   const handleSelect = (id: number, index: number) => {
@@ -169,7 +156,9 @@ export default function SideBar() {
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
-              <ArrowForwardIosIcon sx={{ fontSize: "medium" }} />
+              <ArrowForwardIosIcon
+                sx={{ fontSize: "medium", marginRight: 3 }}
+              />
             </ListItem>
           </List>
         ))}

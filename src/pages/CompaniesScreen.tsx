@@ -1,6 +1,4 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import SideBar from "../components/SideBar";
 import { Box } from "@mui/material";
 
 function RoleScreen() {

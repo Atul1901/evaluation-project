@@ -1,16 +1,12 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-
 import Modal from "@mui/material/Modal";
 import "../App.css";
-
 import CloseIcon from "@mui/icons-material/Close";
 import { Divider } from "@mui/material";
-
 import edit from "../utils/assets/logos/Edit.png";
 import DatePicking from "./DatePicking";
-
 import { useDispatch } from "react-redux";
 import { editRole } from "../utils/redux/reducers/roles/RoleSlice";
 
@@ -142,6 +138,8 @@ export default function EditRoleModal({ item }: any) {
                 type="text"
                 className="place-input"
                 placeholder={item.role_id}
+                pattern="[0-9A-Za-z]{6}"
+                title="Please enter a 6-digit alphanumeric value"
                 onChange={(e) => onHandleChange(e, "roleID")}
               ></input>
             </div>

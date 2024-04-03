@@ -1,10 +1,8 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-
 import Modal from "@mui/material/Modal";
 import "../App.css";
-
 import { Divider } from "@mui/material";
 import deleteLogo from "../utils/assets/logos/Vector.png";
 import { useDispatch } from "react-redux";
@@ -28,9 +26,7 @@ export default function DeleteModal({ uniqID }: any) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   const dispatch = useDispatch();
-
   const onSumbit = () => {
     dispatch(deleteRole(uniqID));
     handleClose();

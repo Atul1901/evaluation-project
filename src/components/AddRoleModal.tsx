@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
@@ -13,6 +13,7 @@ import { getUsersData } from "../utils/DummyData";
 import { useDispatch } from "react-redux";
 import { addRole } from "../utils/redux/reducers/roles/RoleSlice";
 import uniqid from "uniqid";
+import SuccessPop from "./SuccessPop";
 
 const style = {
   position: "absolute" as "absolute",
@@ -32,6 +33,7 @@ export default function AddRoleModal() {
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
+  const [isSnackBar, setSnackBar] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
@@ -79,6 +81,8 @@ export default function AddRoleModal() {
     };
     console.log("data:", inputData);
     handleClose();
+    setSnackBar(true);
+    console.log(isSnackBar, "snackBar");
     getUsersData.data.push(reqData);
     dispatch(addRole(reqData));
   };
@@ -92,6 +96,7 @@ export default function AddRoleModal() {
       >
         Add
       </Button>
+      <SuccessPop showSnackbar={isSnackBar} />
       <Modal
         open={open}
         aria-labelledby="modal-modal-title"

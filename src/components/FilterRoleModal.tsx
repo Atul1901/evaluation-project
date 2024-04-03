@@ -1,15 +1,12 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-
 import Modal from "@mui/material/Modal";
 import "../App.css";
-
 import CloseIcon from "@mui/icons-material/Close";
 import { Divider } from "@mui/material";
-
 import filterLogo from "../utils/assets/logos/Vector (1).png";
-import DatePicking from "./DatePicking";
+
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -34,12 +31,27 @@ export default function FilterRoleModal() {
   const [roleState, setRoleState] = React.useState("");
   const [roleID, setRoleID] = React.useState("");
 
+  const [errorMessage, setErrorMessage] = React.useState("");
+
   const clearFields = () => {
     setRoleName("");
     setOrganizationName("");
     setCreatedDate("");
     setRoleState("");
     setRoleID("");
+  };
+
+  const handleChange = (e: any) => {
+    const value = e.target.value;
+    const isValid = /^[0-9A-Za-z]{0,6}$/.test(value);
+
+    if (!isValid) {
+      setErrorMessage("Please enter a maximum of 6 alphanumeric characters");
+    } else {
+      setErrorMessage("");
+    }
+
+    setRoleID(value);
   };
 
   return (
@@ -137,10 +149,20 @@ export default function FilterRoleModal() {
               <p className="input-field-name">Role ID</p>
               <input
                 type="text"
-                className="place-input"
+                className={`place-input ${errorMessage && "error"}`}
+                style={
+                  (errorMessage && {
+                    background: "#FF00001A",
+                    borderColor: "#FF0000",
+                  }) ||
+                  {}
+                }
+                pattern="[0-9A-Za-z]{6}"
+                title="Please enter a 6-digit alphanumeric value"
                 value={roleID}
-                onChange={(e) => setRoleID(e.target.value)}
+                onChange={handleChange}
               ></input>
+              {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
             </div>
           </div>
           <div>
@@ -153,3 +175,4 @@ export default function FilterRoleModal() {
     </div>
   );
 }
+// background: #FF00001A;
