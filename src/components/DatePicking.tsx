@@ -13,7 +13,10 @@ export default function DatePicking({ setInputData, inputData, item }: any) {
   };
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={["DatePicker"]} sx={{ paddingTop: 0 }}>
+      <DemoContainer
+        components={["DatePicker"]}
+        sx={{ paddingTop: 0, height: 40 }}
+      >
         <DatePicker
           label={item?.created_date}
           onChange={handleDataChange}

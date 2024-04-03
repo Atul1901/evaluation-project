@@ -25,3 +25,31 @@ export const checkValidation = (field: string, value: any) => {
   }
   return Validation;
 };
+
+export const checkError = (errorData: any) => {
+  if (
+    errorData.roleName ||
+    errorData.organizationName ||
+    errorData.createdDate ||
+    errorData.roleState ||
+    errorData.roleID
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export const checkEmpty = (fieldData: any) => {
+  if (
+    !fieldData.roleName ||
+    !fieldData.organizationName ||
+    !fieldData.createdDate ||
+    !fieldData.roleState ||
+    !fieldData.roleID
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+};

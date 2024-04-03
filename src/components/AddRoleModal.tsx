@@ -12,6 +12,8 @@ import { addRole } from "../utils/redux/reducers/roles/RoleSlice";
 import uniqid from "uniqid";
 import SuccessPop from "./SuccessPop";
 import { checkValidation } from "../utils/helpers";
+import { checkError } from "../utils/helpers";
+import { checkEmpty } from "../utils/helpers";
 
 const style = {
   position: "absolute" as "absolute",
@@ -81,6 +83,11 @@ export default function AddRoleModal() {
   };
 
   const onSubmit = () => {
+    const isEmpty = checkEmpty(inputData);
+    const isError = checkError(errorMessage);
+    if (isError || isEmpty) {
+      return;
+    }
     const reqData = {
       user_name: inputData.roleName,
       organization_name: inputData.organizationName,
