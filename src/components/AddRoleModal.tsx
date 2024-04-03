@@ -118,6 +118,7 @@ export default function AddRoleModal() {
       >
         Add
       </Button>
+
       <SuccessPop showSnackbar={isSnackBar} setSnackBar={setSnackBar} />
       <Modal
         open={open}

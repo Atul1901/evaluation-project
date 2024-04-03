@@ -10,6 +10,7 @@ import DatePicking from "./DatePicking";
 import { useDispatch } from "react-redux";
 import { editRole } from "../utils/redux/reducers/roles/RoleSlice";
 import { checkEmpty, checkError, checkValidation } from "../utils/helpers";
+import SuccessPop from "./SuccessPop";
 
 const style = {
   position: "absolute" as "absolute",
@@ -27,6 +28,7 @@ const style = {
 export default function EditRoleModal({ item }: any) {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+  const [isSnackBar, setSnackBar] = React.useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
@@ -63,6 +65,7 @@ export default function EditRoleModal({ item }: any) {
       uniq_id: item.uniq_id,
     };
     handleClose();
+    setSnackBar(true);
     dispatch(editRole(reqData));
   };
 
@@ -86,6 +89,7 @@ export default function EditRoleModal({ item }: any) {
       <Button onClick={handleOpen} sx={{ fontFamily: "Montserrat" }}>
         <img src={edit} alt="edit logo" />
       </Button>
+      <SuccessPop showSnackbar={isSnackBar} setSnackBar={setSnackBar} />
       <Modal
         open={open}
         aria-labelledby="modal-modal-title"
@@ -175,13 +179,13 @@ export default function EditRoleModal({ item }: any) {
           </div>
           <div>
             <button
-              // className="modal-add-button"
+              className="modal-add-button"
               onClick={onSubmit}
-              className={
-                isEmptyIsError
-                  ? "modal-add-button disable-btn"
-                  : "modal-add-button "
-              }
+              // className={
+              //   isEmptyIsError
+              //     ? "modal-add-button disable-btn"
+              //     : "modal-add-button "
+              // }
             >
               Update
             </button>
