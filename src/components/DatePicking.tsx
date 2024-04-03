@@ -15,7 +15,12 @@ export default function DatePicking({ setInputData, inputData, item }: any) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer
         components={["DatePicker"]}
-        sx={{ paddingTop: 0, height: "40px" }}
+        sx={{
+          paddingTop: 0,
+          height: "40px",
+          borderRadius: "6px",
+          padding: "2px",
+        }}
       >
         <DatePicker
           label={item?.created_date}
@@ -23,12 +28,15 @@ export default function DatePicking({ setInputData, inputData, item }: any) {
           sx={{
             padding: 0,
             background: "#f0efff",
-            border: "none",
+            // border: "none",
+
             width: 280 + "px",
-            borderWidth: "0px",
+            // borderWidth: "0px",
             height: "100%",
-            outline: "0px",
+            outline: "none",
+            justifyContent: "center",
           }}
+          // slotProps={{ textField: { variant: "standard" } }}
           disableFuture
         />
       </DemoContainer>

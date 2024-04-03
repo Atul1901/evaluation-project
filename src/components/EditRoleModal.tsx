@@ -9,6 +9,7 @@ import edit from "../utils/assets/logos/Edit.png";
 import DatePicking from "./DatePicking";
 import { useDispatch } from "react-redux";
 import { editRole } from "../utils/redux/reducers/roles/RoleSlice";
+import { checkEmpty, checkError, checkValidation } from "../utils/helpers";
 
 const style = {
   position: "absolute" as "absolute",
@@ -27,7 +28,18 @@ export default function EditRoleModal({ item }: any) {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    // reset();
+  };
+  const [errorMessage, setErrorMessage] = React.useState({
+    roleName: "",
+    roleID: "",
+    organizationName: "",
+    createdDate: "",
+    roleState: "",
+  });
+
   const [inputData, setInputData] = React.useState({
     roleName: item.user_name,
     organizationName: item.organization_name,
@@ -36,7 +48,12 @@ export default function EditRoleModal({ item }: any) {
     roleID: item.role_id,
   });
 
+  const isEmptyIsError = checkEmpty(inputData) || checkError(errorMessage);
+
   const onSubmit = () => {
+    if (isEmptyIsError) {
+      return;
+    }
     const reqData = {
       user_name: inputData.roleName,
       organization_name: inputData.organizationName,
@@ -49,12 +66,18 @@ export default function EditRoleModal({ item }: any) {
     dispatch(editRole(reqData));
   };
 
-  const onHandleChange = (event: any, name: string) => {
+  const onHandleChange = (event: any, field: string) => {
     let { value } = event.target;
+    const Validation = checkValidation(field, value);
+    if (!Validation.isValid) {
+      setErrorMessage({ ...errorMessage, [field]: Validation.errorMessage });
+    } else {
+      setErrorMessage({ ...errorMessage, [field]: "" });
+    }
     value = value.toUpperCase();
     setInputData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [field]: value,
     }));
   };
 
@@ -81,10 +104,16 @@ export default function EditRoleModal({ item }: any) {
               <p className="input-field-name">Role Name</p>
               <input
                 type="text"
-                className="place-input"
+                // className="place-input"
                 placeholder={item.user_name}
                 onChange={(e) => onHandleChange(e, "roleName")}
+                className={
+                  errorMessage.roleName ? "place-input error" : "place-input"
+                }
               ></input>
+              {errorMessage.roleName && (
+                <p className="error-text">{errorMessage.roleName}</p>
+              )}
             </div>
             <div className="input-data">
               <p className="input-field-name">Organization Name</p>
@@ -130,16 +159,30 @@ export default function EditRoleModal({ item }: any) {
               <p className="input-field-name">Role ID</p>
               <input
                 type="text"
-                className="place-input"
+                // className="place-input"
                 placeholder={item.role_id}
                 pattern="[0-9A-Za-z]{6}"
                 title="Please enter a 6-digit alphanumeric value"
+                className={
+                  errorMessage.roleID ? "place-input error" : "place-input"
+                }
                 onChange={(e) => onHandleChange(e, "roleID")}
               ></input>
+              {errorMessage.roleID && (
+                <p className="error-text">{errorMessage.roleID}</p>
+              )}
             </div>
           </div>
           <div>
-            <button className="modal-add-button" onClick={onSubmit}>
+            <button
+              // className="modal-add-button"
+              onClick={onSubmit}
+              className={
+                isEmptyIsError
+                  ? "modal-add-button disable-btn"
+                  : "modal-add-button "
+              }
+            >
               Update
             </button>
           </div>

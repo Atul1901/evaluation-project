@@ -86,7 +86,7 @@ export default function AddRoleModal() {
 
   const onSubmit = () => {
     if (isEmptyIsError) {
-      // return;
+      return;
     }
     // const isEmpty = checkEmpty(inputData);
     // const isError = checkError(errorMessage);
