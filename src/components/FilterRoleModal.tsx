@@ -40,7 +40,7 @@ export default function FilterRoleModal() {
     return state.roles;
   });
   console.log(data, "redux-data");
-  console.log("usen name:", data[0].user_name);
+  // console.log("usen name:", data[0].user_name);
 
   const clearFields = () => {
     setRoleName("");
