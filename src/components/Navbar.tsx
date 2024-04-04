@@ -22,7 +22,7 @@ export default function Navbar() {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <img src={sqaudralogo} />
+            <img src={sqaudralogo} alt="this is the logo of squadra" />
           </IconButton>
           <Typography
             variant="h6"

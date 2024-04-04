@@ -50,7 +50,7 @@ export default function DeleteModal({ uniqID }: any) {
           <p>Are you sure you want to delete this role</p>
           <div className="delete-buttons">
             <button className="cancel-button" onClick={handleClose}>
-              cancel
+              Cancel
             </button>
             <button className="yes-button" onClick={onSumbit}>
               Yes Delete!

@@ -53,12 +53,10 @@
 
 .page-heading {
   width: 58px;
-
   top: 128px;
   left: 345px;
   gap: 0px;
   opacity: 0px;
-
   font-family: Montserrat;
   font-size: 20px;
   font-weight: 600;
@@ -68,9 +66,7 @@
 }
 
 .heading-buttons {
-  /* vertical-align: middle; */
   align-items: center;
-
   display: flex;
   gap: 28px;
 }
@@ -86,7 +82,6 @@
   opacity: 0px;
   background: #4d47c3;
   color: white;
-
   font-family: Montserrat;
   font-size: 15px;
   font-weight: 400;
@@ -106,7 +101,6 @@
   opacity: 0px;
   background: #4d47c3;
   color: white;
-
   font-family: Montserrat;
   font-size: 15px;
   font-weight: 400;
@@ -131,13 +125,12 @@
   justify-content: center;
   position: fixed;
   width: 78%;
-  bottom: 0;
+  bottom: 20px;
 }
 
 /*add-modal styling  */
 .add-modal-heading {
   display: flex;
-
   align-items: center;
   color: #4d47c3;
   font-family: Montserrat;
@@ -152,6 +145,7 @@
   display: flex;
   gap: 15px;
 }
+
 .close-modal {
   background-color: #f0efff;
   border-radius: 5px;
@@ -180,7 +174,6 @@
 }
 
 .input-data {
-  /* flex-basis: calc(100% / 3); Set width for 3 items per row */
   padding: 5px;
 }
 
@@ -235,7 +228,6 @@
   border-radius: 6px;
   border: 1px solid #4d47c3;
   background: #4d47c31a;
-
   font-family: Montserrat;
   font-size: 15px;
   font-weight: 400;
@@ -248,10 +240,15 @@
   width: Hug (160px) px;
   height: Hug (44px) px;
   padding: 13px 40px 13px 40px;
-
+  color: white;
   border-radius: 6px;
   border: none;
   background: #4d47c3;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18.29px;
+  text-align: left;
 }
 
 /* validation errors */
@@ -273,11 +270,11 @@ input:invalid {
   text-align: left;
   color: red;
 }
+
 .disable-btn {
   background: grey;
 }
-/* has context menu */
-/* successfully added role popup */
+
 .popup-modal {
   border-radius: 5px;
   opacity: 0px;
@@ -290,7 +287,6 @@ input:invalid {
   color: #ffffff;
   padding-left: 12px;
   padding-right: 12px;
-
   display: flex;
   align-items: center;
   gap: 10px;

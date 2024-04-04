@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Divider } from "@mui/material";
 import Table from "../components/Table";
 import TableHeading from "../components/TableHeading";
-import BasicPagination from "../components/BasicPagination";
 
 function RoleScreen() {
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Pagination } from "@mui/material";
 import EditRoleModal from "./EditRoleModal";
 import DeleteModal from "./DeleteModal";
@@ -7,15 +7,9 @@ import { useSelector } from "react-redux";
 function Table() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-
   const data = useSelector((state: any) => {
     return state.roles;
   });
-
-  // useEffect(() => {
-  //   console.log("redux-data:", data);
-  // }, [data]);
-
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
@@ -40,7 +34,6 @@ function Table() {
             <th className="table-heading-row">Actions</th>
           </tr>
         </thead>
-
         <tbody className="table-data">
           {currentItems &&
             currentItems.map((item: any, key: any) => {

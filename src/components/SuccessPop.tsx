@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
 interface Props {
-  showSnackbar: boolean; // Define boolean prop
+  showSnackbar: boolean;
   setSnackBar: any;
+  edit: string;
 }
 
-const SuccessPop: React.FC<Props> = ({ showSnackbar, setSnackBar }) => {
-  // const [isAlert, setAlert] = useState<boolean>(true);
-
+const SuccessPop: React.FC<Props> = ({ showSnackbar, setSnackBar, edit }) => {
   const handleClose = () => {
-    // setAlert(false);
     setSnackBar(false);
   };
 
@@ -32,7 +30,7 @@ const SuccessPop: React.FC<Props> = ({ showSnackbar, setSnackBar }) => {
           variant="filled"
           sx={{ width: "100%", fontFamily: "Montserrat" }}
         >
-          The Role has been added Successfully!
+          The Role has been {edit} Successfully!
         </Alert>
       </Snackbar>
     </>

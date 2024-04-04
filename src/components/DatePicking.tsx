@@ -28,15 +28,11 @@ export default function DatePicking({ setInputData, inputData, item }: any) {
           sx={{
             padding: 0,
             background: "#f0efff",
-            // border: "none",
-
             width: 280 + "px",
-            // borderWidth: "0px",
             height: "100%",
             outline: "none",
             justifyContent: "center",
           }}
-          // slotProps={{ textField: { variant: "standard" } }}
           disableFuture
         />
       </DemoContainer>

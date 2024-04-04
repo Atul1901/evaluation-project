@@ -88,11 +88,7 @@ export default function AddRoleModal() {
     if (isEmptyIsError) {
       return;
     }
-    // const isEmpty = checkEmpty(inputData);
-    // const isError = checkError(errorMessage);
-    // if (isError || isEmpty) {
-    //   return;
-    // }
+
     const reqData = {
       user_name: inputData.roleName,
       organization_name: inputData.organizationName,
@@ -101,10 +97,10 @@ export default function AddRoleModal() {
       role_id: inputData.roleID,
       uniq_id: uniqid(),
     };
-    console.log("data:", inputData);
+
     handleClose();
     setSnackBar(true);
-    console.log(isSnackBar, "snackBar");
+
     getUsersData.data.push(reqData);
     dispatch(addRole(reqData));
   };
@@ -119,7 +115,11 @@ export default function AddRoleModal() {
         Add
       </Button>
 
-      <SuccessPop showSnackbar={isSnackBar} setSnackBar={setSnackBar} />
+      <SuccessPop
+        showSnackbar={isSnackBar}
+        setSnackBar={setSnackBar}
+        edit={"added"}
+      />
       <Modal
         open={open}
         aria-labelledby="modal-modal-title"
@@ -138,7 +138,6 @@ export default function AddRoleModal() {
               <p className="input-field-name">Role Name</p>
               <input
                 type="text"
-                // className="place-input"
                 onChange={(e) => onHandleChange(e, "roleName")}
                 className={
                   errorMessage.roleName ? "place-input error" : "place-input"
@@ -193,12 +192,10 @@ export default function AddRoleModal() {
               <p className="input-field-name">Role ID</p>
               <input
                 type="text"
-                // className="place-input"
                 className={
                   errorMessage.roleID ? "place-input error" : "place-input"
                 }
                 onChange={(e) => onHandleChange(e, "roleID")}
-                // className={errorMessage.roleID && "error"}
               ></input>
               {errorMessage.roleID && (
                 <p className="error-text">{errorMessage.roleID}</p>

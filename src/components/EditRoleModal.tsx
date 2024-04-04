@@ -32,8 +32,8 @@ export default function EditRoleModal({ item }: any) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
-    // reset();
   };
+
   const [errorMessage, setErrorMessage] = React.useState({
     roleName: "",
     roleID: "",
@@ -89,7 +89,11 @@ export default function EditRoleModal({ item }: any) {
       <Button onClick={handleOpen} sx={{ fontFamily: "Montserrat" }}>
         <img src={edit} alt="edit logo" />
       </Button>
-      <SuccessPop showSnackbar={isSnackBar} setSnackBar={setSnackBar} />
+      <SuccessPop
+        showSnackbar={isSnackBar}
+        setSnackBar={setSnackBar}
+        edit={"editted"}
+      />
       <Modal
         open={open}
         aria-labelledby="modal-modal-title"
@@ -108,8 +112,7 @@ export default function EditRoleModal({ item }: any) {
               <p className="input-field-name">Role Name</p>
               <input
                 type="text"
-                // className="place-input"
-                placeholder={item.user_name}
+                value={inputData.roleName}
                 onChange={(e) => onHandleChange(e, "roleName")}
                 className={
                   errorMessage.roleName ? "place-input error" : "place-input"
@@ -124,7 +127,7 @@ export default function EditRoleModal({ item }: any) {
               <input
                 type="text"
                 className="place-input"
-                placeholder={item.organization_name}
+                value={inputData.organizationName}
                 onChange={(e) => onHandleChange(e, "organizationName")}
               ></input>
             </div>
@@ -144,7 +147,7 @@ export default function EditRoleModal({ item }: any) {
                 className="place-input"
                 onChange={(e) => onHandleChange(e, "roleState")}
               >
-                <option value="">{item.role_state}</option>
+                <option value="">{inputData.roleState}</option>
                 <option
                   value="active"
                   style={{ fontFamily: "Poppins", fontWeight: 400 }}
@@ -163,8 +166,7 @@ export default function EditRoleModal({ item }: any) {
               <p className="input-field-name">Role ID</p>
               <input
                 type="text"
-                // className="place-input"
-                placeholder={item.role_id}
+                value={inputData.roleID}
                 pattern="[0-9A-Za-z]{6}"
                 title="Please enter a 6-digit alphanumeric value"
                 className={
@@ -178,15 +180,7 @@ export default function EditRoleModal({ item }: any) {
             </div>
           </div>
           <div>
-            <button
-              className="modal-add-button"
-              onClick={onSubmit}
-              // className={
-              //   isEmptyIsError
-              //     ? "modal-add-button disable-btn"
-              //     : "modal-add-button "
-              // }
-            >
+            <button className="modal-add-button" onClick={onSubmit}>
               Update
             </button>
           </div>
