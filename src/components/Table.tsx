@@ -3,17 +3,15 @@ import { Pagination } from "@mui/material";
 import EditRoleModal from "./EditRoleModal";
 import DeleteModal from "./DeleteModal";
 import { useSelector } from "react-redux";
+import { roles } from "../utils/redux/reducers/roles/RoleSlice";
 
 function Table() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-  const data = useSelector((state: any) => {
-    return state.roles;
-  });
+  const data = useSelector(roles);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
-  // console.log(currentItems);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,

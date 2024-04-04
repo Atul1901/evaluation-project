@@ -99,7 +99,6 @@ export default function AddRoleModal() {
 
     handleClose();
     setSnackBar(true);
-
     getUsersData.data.push(reqData);
     dispatch(addRole(reqData));
   };

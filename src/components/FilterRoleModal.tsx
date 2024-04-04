@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
@@ -7,7 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Divider } from "@mui/material";
 import filterLogo from "../utils/assets/logos/Vector (1).png";
 import { useDispatch } from "react-redux";
-import { filterRole } from "../utils/redux/reducers/FilterSlice";
+import { filterRole } from "../utils/redux/reducers/roles/RoleSlice";
 import { useSelector } from "react-redux";
 
 const style = {
@@ -33,14 +33,26 @@ export default function FilterRoleModal() {
   const [createdDate, setCreatedDate] = React.useState("");
   const [roleState, setRoleState] = React.useState("");
   const [roleID, setRoleID] = React.useState("");
+  const [isCleared, setIsCleared] = React.useState(true);
   const [errorMessage, setErrorMessage] = React.useState("");
-  const [filter, setFilter] = React.useState([]);
 
-  const data = useSelector((state: any) => {
+  const user_list = useSelector((state: any) => {
     return state.roles;
   });
-  console.log(data, "redux-data");
-  // console.log("usen name:", data[0].user_name);
+
+  useEffect(() => {
+    if (
+      !!roleName ||
+      !!organizationName ||
+      !!createdDate ||
+      !!roleState ||
+      !!roleID
+    ) {
+      setIsCleared(false);
+    } else {
+      setIsCleared(true);
+    }
+  }, [roleID, roleName, organizationName, roleState, createdDate]);
 
   const clearFields = () => {
     setRoleName("");
@@ -49,6 +61,7 @@ export default function FilterRoleModal() {
     setRoleState("");
     setRoleID("");
   };
+
   const checkValidation = (field: string, value: any) => {
     let isValid = false;
     let Validation = {
@@ -68,6 +81,7 @@ export default function FilterRoleModal() {
     }
     return Validation;
   };
+
   const handleChange = (e: any, field: string) => {
     const value = e.target.value;
     const Validation = checkValidation(field, value);
@@ -81,37 +95,15 @@ export default function FilterRoleModal() {
   };
 
   const onSubmit = () => {
-    const reqData = {
-      user_name: roleName,
-      organization_name: organizationName,
-      created_date: createdDate,
-      role_state: roleState,
-      role_id: roleID,
-    };
-    const filterData = data.filter(
-      (data: any) =>
-        roleName === data.user_name ||
-        organizationName === data.organization_name ||
-        createdDate === data.created_date ||
-        roleState === data.role_state ||
-        roleID === data.role_ID
+    dispatch(
+      filterRole(
+        isCleared
+          ? null
+          : { roleID, roleName, organizationName, createdDate, roleState }
+      )
     );
-    // setFilter([...filterData]);
-    dispatch(filterRole(filterData));
-    console.log("filterdata:", filterData);
     handleClose();
   };
-
-  // const filteredFormDetails = data.filter:any(
-  //             (data) =>
-  //                data.company_name === formDetails.company_name &&
-  //                data.company_email_ID === formDetails.company_email_ID &&
-  //                data.valid_till === formDetails.valid_till &&
-  //                data.organization_name === formDetails.organization_name &&
-  //                data.companys_ID === formDetails.companys_ID
-  //          );
-  //          setFilterData([...filteredFormDetails]);
-  // formdetails has all the data to filter
 
   return (
     <div>
