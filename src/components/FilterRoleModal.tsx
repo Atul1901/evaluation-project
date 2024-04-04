@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
@@ -6,6 +6,9 @@ import "../App.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { Divider } from "@mui/material";
 import filterLogo from "../utils/assets/logos/Vector (1).png";
+import { useDispatch } from "react-redux";
+import { filterRole } from "../utils/redux/reducers/FilterSlice";
+import { useSelector } from "react-redux";
 
 const style = {
   position: "absolute" as "absolute",
@@ -21,6 +24,7 @@ const style = {
 };
 
 export default function FilterRoleModal() {
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -30,6 +34,13 @@ export default function FilterRoleModal() {
   const [roleState, setRoleState] = React.useState("");
   const [roleID, setRoleID] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
+  const [filter, setFilter] = React.useState([]);
+
+  const data = useSelector((state: any) => {
+    return state.roles;
+  });
+  console.log(data, "redux-data");
+  console.log("usen name:", data[0].user_name);
 
   const clearFields = () => {
     setRoleName("");
@@ -44,18 +55,15 @@ export default function FilterRoleModal() {
       isValid: false,
       errorMessage: "",
     };
-    console.log("field:", field);
     switch (field) {
       case "roleID":
         Validation.isValid = /^[0-9A-Za-z]{0,6}$/.test(value);
         Validation.errorMessage = "enter valid role ID";
-        console.log("roleid case");
         break;
 
       case "organizationName":
         Validation.isValid = /^[0-9A-Za-z]{0,6}$/.test(value);
         Validation.errorMessage = "enter valid organization name";
-        console.log("org case");
         break;
     }
     return Validation;
@@ -64,7 +72,6 @@ export default function FilterRoleModal() {
     const value = e.target.value;
     const Validation = checkValidation(field, value);
 
-    console.log("validation:", Validation);
     if (!Validation.isValid) {
       setErrorMessage(Validation.errorMessage);
     } else {
@@ -72,6 +79,39 @@ export default function FilterRoleModal() {
     }
     setRoleID(value);
   };
+
+  const onSubmit = () => {
+    const reqData = {
+      user_name: roleName,
+      organization_name: organizationName,
+      created_date: createdDate,
+      role_state: roleState,
+      role_id: roleID,
+    };
+    const filterData = data.filter(
+      (data: any) =>
+        roleName === data.user_name ||
+        organizationName === data.organization_name ||
+        createdDate === data.created_date ||
+        roleState === data.role_state ||
+        roleID === data.role_ID
+    );
+    // setFilter([...filterData]);
+    dispatch(filterRole(filterData));
+    console.log("filterdata:", filterData);
+    handleClose();
+  };
+
+  // const filteredFormDetails = data.filter:any(
+  //             (data) =>
+  //                data.company_name === formDetails.company_name &&
+  //                data.company_email_ID === formDetails.company_email_ID &&
+  //                data.valid_till === formDetails.valid_till &&
+  //                data.organization_name === formDetails.organization_name &&
+  //                data.companys_ID === formDetails.companys_ID
+  //          );
+  //          setFilterData([...filteredFormDetails]);
+  // formdetails has all the data to filter
 
   return (
     <div>
@@ -186,7 +226,7 @@ export default function FilterRoleModal() {
             </div>
           </div>
           <div>
-            <button className="modal-add-button" onClick={handleClose}>
+            <button className="modal-add-button" onClick={onSubmit}>
               Continue
             </button>
           </div>

@@ -7,7 +7,6 @@ const RoleSlice = createSlice({
   initialState: [] as RoleSlice[],
   reducers: {
     addRole(state, action) {
-      console.log("action", action.payload);
       state.push(action.payload);
     },
     editRole(state, action) {
@@ -26,6 +25,10 @@ const RoleSlice = createSlice({
 
       return state;
     },
+    // filterRole(state, action) {
+    //   console.log("action:", action.payload);
+    //   state.push(action.payload);
+    // },
   },
 });
 

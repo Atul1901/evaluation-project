@@ -13,6 +13,7 @@ function Table() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  // console.log(currentItems);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,

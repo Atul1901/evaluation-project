@@ -64,7 +64,6 @@ export default function AddRoleModal() {
     } else {
       setErrorMessage({ ...errorMessage, [field]: "" });
     }
-    console.log("name:", field, "value:", value);
 
     value = value.toUpperCase();
     setInputData((prevData) => ({
