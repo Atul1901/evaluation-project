@@ -17,7 +17,7 @@ export default function DatePicking({ setInputData, inputData, item }: any) {
         components={["DatePicker"]}
         sx={{
           paddingTop: 0,
-          height: "40px",
+
           borderRadius: "6px",
           padding: "2px",
         }}

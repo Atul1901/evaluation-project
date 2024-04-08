@@ -31,7 +31,7 @@
   background: #f0efff;
   margin-bottom: 10px;
   border-spacing: 10px;
-  line-height: 38px;
+  line-height: 55px;
 }
 
 .edit-del-logo {
@@ -139,6 +139,7 @@
   justify-content: space-between;
   margin-top: 0;
   padding-top: 0;
+  margin-bottom: 10p;
 }
 
 .head-clear {
@@ -174,12 +175,11 @@
 }
 
 .input-data {
-  padding: 5px;
 }
 
 .place-input {
   width: 280px;
-  height: 40px;
+  height: 58px;
   top: 426px;
   left: 322px;
   gap: 0px;
@@ -194,7 +194,7 @@
   font-family: Poppins;
   font-size: 14px;
   font-weight: 400;
-  line-height: 21px;
+  line-height: 12px;
   text-align: left;
   color: #636363;
 }
