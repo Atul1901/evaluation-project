@@ -6,12 +6,15 @@ export const checkValidation = (field: string, value: any) => {
 
   switch (field) {
     case "roleID":
-      Validation.isValid = /^[0-9A-Za-z]{0,3}$/.test(value);
+      Validation.isValid =
+        /^(?=(?:\D*\d){3})(?=(?:[^a-zA-Z]*[a-zA-Z]){3})[0-9a-zA-Z]{6}$/.test(
+          value
+        );
       Validation.errorMessage = "enter valid role ID";
       break;
 
     case "roleName":
-      Validation.isValid = /^[A-Za-z]*$/.test(value);
+      Validation.isValid = /^[A-Za-z\s]*$/.test(value);
       Validation.errorMessage = "enter valid Role Name";
       break;
   }
