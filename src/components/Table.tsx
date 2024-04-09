@@ -22,21 +22,23 @@ function Table() {
 
   return (
     <div>
-      <table className="table">
-        <thead className="table-heading-row">
-          <tr>
-            <th className="table-heading-row">Role Name</th>
-            <th className="table-heading-row">Organization Name</th>
-            <th className="table-heading-row">Created Date</th>
-            <th className="table-heading-row">Role State</th>
-            <th className="table-heading-row">Role ID</th>
-            <th className="table-heading-row">Actions</th>
-          </tr>
-        </thead>
-        <tbody className="table-data">
-          {currentItems &&
-            currentItems.map((item: any, key: any) => {
-              return (
+      {data.length === 0 ? (
+        <p className="no-data">No roles available</p>
+      ) : (
+        <div>
+          <table className="table">
+            <thead className="table-heading-row">
+              <tr>
+                <th className="table-heading-row">Role Name</th>
+                <th className="table-heading-row">Organization Name</th>
+                <th className="table-heading-row">Created Date</th>
+                <th className="table-heading-row">Role State</th>
+                <th className="table-heading-row">Role ID</th>
+                <th className="table-heading-row">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="table-data">
+              {currentItems.map((item: any, key: any) => (
                 <tr key={key}>
                   <td>{item?.user_name}</td>
                   <td>{item?.organization_name}</td>
@@ -48,17 +50,18 @@ function Table() {
                     <DeleteModal uniqID={item.uniq_id} />
                   </td>
                 </tr>
-              );
-            })}
-        </tbody>
-      </table>
-      <Pagination
-        count={Math.ceil(data.length / itemsPerPage)}
-        page={currentPage}
-        onChange={handlePageChange}
-        color="primary"
-        className="pagination"
-      />
+              ))}
+            </tbody>
+          </table>
+          <Pagination
+            count={Math.ceil(data.length / itemsPerPage)}
+            page={currentPage}
+            onChange={handlePageChange}
+            color="primary"
+            className="pagination"
+          />
+        </div>
+      )}
     </div>
   );
 }
