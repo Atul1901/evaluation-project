@@ -121,24 +121,43 @@ function Signup() {
               className={"place-input-sign"}
               placeholder="Enter your name"
             ></input>
+            {errorMessage.name && (
+              <p className="error-text">{errorMessage.name}</p>
+            )}
             <input
               type="text"
               onChange={(e) => onHandleChange(e, "phoneNum")}
               className={"place-input-sign"}
               placeholder="Phone number"
             ></input>
+            {errorMessage.phoneNum && (
+              <p className="error-text">{errorMessage.phoneNum}</p>
+            )}
             <input
               type="text"
               onChange={(e) => onHandleChange(e, "emailId")}
               className={"place-input-sign"}
               placeholder="Enter your email Id"
             ></input>
-            <input
+            {errorMessage.emailId && (
+              <p className="error-text">{errorMessage.emailId}</p>
+            )}
+            {/* <input
               type="text"
               onChange={(e) => onHandleChange(e, "dob")}
               className={"place-input-sign"}
               placeholder="DOB"
-            ></input>
+            ></input> */}
+            {/* <DatePicking></DatePicking> */}
+            <input
+              placeholder="DOB"
+              className={"place-input-sign"}
+              type="text"
+              onFocus={(e) => (e.target.type = "date")}
+              onBlur={(e) => (e.target.type = "text")}
+              max={new Date().toISOString().split("T")[0]}
+              id="date"
+            />
 
             <input
               type="text"

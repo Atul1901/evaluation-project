@@ -51,20 +51,20 @@
 .input-container {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 12px;
 }
 
 .place-input-sign {
   width: 100%;
   height: 58px;
-  /* top: 426px;
-    left: 322px; */
+
   gap: 0px;
   border-radius: 6px;
   opacity: 0px;
   background: #f0efff;
   border: none;
   outline: none;
+  padding-left: 20px;
 }
 
 .right-content {
@@ -89,7 +89,7 @@
 .place-input-sign::placeholder {
   font-size: 16px;
   color: #a7a3ff;
-  padding-left: 30px;
+  /* padding-left: 30px; */
 }
 
 .reg-button {

@@ -17,6 +17,22 @@ export const checkValidation = (field: string, value: any) => {
       Validation.isValid = /^[A-Za-z\s]*$/.test(value);
       Validation.errorMessage = "enter valid Role Name";
       break;
+
+    case "name":
+      Validation.isValid = /^[A-Za-z\s]*$/.test(value);
+      Validation.errorMessage = "enter valid Name";
+      break;
+
+    case "phoneNum":
+      Validation.isValid = /^\d{10}$/.test(value);
+      Validation.errorMessage = "enter valid Phone number";
+      break;
+
+    case "emailId":
+      Validation.isValid = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(
+        value
+      );
+      Validation.errorMessage = "enter valid email";
   }
   return Validation;
 };

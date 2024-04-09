@@ -50,7 +50,7 @@ const RoleSlice = createSlice({
     },
     filterRole(state, action) {
       if (!!action.payload) {
-        state.filter_data = state.data.filter(
+        state.filter_data = state.data?.filter(
           (data: any) =>
             action.payload.roleName?.toLowerCase() ===
               data.user_name.toLowerCase() ||
