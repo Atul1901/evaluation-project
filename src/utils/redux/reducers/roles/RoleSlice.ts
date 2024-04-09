@@ -3,13 +3,25 @@ import { createSlice } from "@reduxjs/toolkit";
 interface RoleSliceState {
   data: any[];
   filter_data: any[];
+  login_users: any[];
 }
+
 const RoleSlice = createSlice({
   name: "roleSlice",
 
   initialState: {
     data: [],
     filter_data: [],
+    login_users: [
+      {
+        name: "Atul",
+        phoneNum: "1234567890",
+        emailId: "atul@gmail.com",
+        dob: "01/01/2001",
+        wru: "admin",
+        password: "atul@gmail.com",
+      },
+    ],
   } as RoleSliceState,
   reducers: {
     addRole(state, action) {
@@ -53,12 +65,20 @@ const RoleSlice = createSlice({
         state.filter_data = state.data;
       }
     },
+    addLoginUser(state, action) {
+      state.data.push(action.payload);
+      state.login_users.push(action.payload);
+    },
   },
 });
 
-export const { addRole, editRole, deleteRole, filterRole } = RoleSlice.actions;
+export const { addRole, editRole, deleteRole, filterRole, addLoginUser } =
+  RoleSlice.actions;
 
 export default RoleSlice.reducer;
 
 export const roles = (state: { roleSlice: RoleSliceState }) =>
   state.roleSlice.filter_data;
+
+export const login_users = (state: { roleSlice: RoleSliceState }) =>
+  state.roleSlice.login_users;

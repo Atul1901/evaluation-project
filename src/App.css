@@ -9,17 +9,6 @@
 }
 
 /* styling for table */
-.no-data {
-  display: flex;
-  justify-content: center;
-  font-family: Poppins;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 21px;
-  text-align: left;
-  color: #505d68;
-}
-
 .table {
   width: 100%;
   text-align: center;
