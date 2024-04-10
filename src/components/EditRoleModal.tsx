@@ -25,7 +25,7 @@ const style = {
   border: "none",
 };
 
-export default function EditRoleModal({ item }: any) {
+export default function EditRoleModal({ item, index }: any) {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [isSnackBar, setSnackBar] = React.useState<boolean>(false);
@@ -50,6 +50,16 @@ export default function EditRoleModal({ item }: any) {
     roleID: item.role_id,
   });
 
+  React.useEffect(() => {
+    setInputData({
+      roleName: item.user_name,
+      organizationName: item.organization_name,
+      createdDate: item.created_date,
+      roleState: item.role_state,
+      roleID: item.role_id,
+    });
+  }, [item]);
+
   const isEmptyIsError = checkEmpty(inputData) || checkError(errorMessage);
 
   const onSubmit = () => {
@@ -57,12 +67,14 @@ export default function EditRoleModal({ item }: any) {
       return;
     }
     const reqData = {
-      user_name: inputData.roleName,
-      organization_name: inputData.organizationName,
-      created_date: inputData.createdDate,
-      role_state: inputData.roleState,
-      role_id: inputData.roleID,
-      uniq_id: item.uniq_id,
+      data: {
+        user_name: inputData.roleName,
+        organization_name: inputData.organizationName,
+        created_date: inputData.createdDate,
+        role_state: inputData.roleState,
+        role_id: inputData.roleID,
+      },
+      index,
     };
     handleClose();
     setSnackBar(true);

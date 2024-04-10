@@ -9,9 +9,6 @@ function Table() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const data = useSelector(roles);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -38,19 +35,27 @@ function Table() {
               </tr>
             </thead>
             <tbody className="table-data">
-              {currentItems.map((item: any, key: any) => (
-                <tr key={key}>
-                  <td>{item?.user_name}</td>
-                  <td>{item?.organization_name}</td>
-                  <td>{item?.created_date}</td>
-                  <td>{item?.role_state}</td>
-                  <td>{item?.role_id} </td>
-                  <td className="edit-del-logo">
-                    <EditRoleModal item={item} />
-                    <DeleteModal uniqID={item.uniq_id} />
-                  </td>
-                </tr>
-              ))}
+              {data
+                .slice(
+                  currentPage * itemsPerPage - itemsPerPage,
+                  currentPage * itemsPerPage
+                )
+                .map((item: any, key: any) => (
+                  <tr key={key}>
+                    <td>{item?.user_name}</td>
+                    <td>{item?.organization_name}</td>
+                    <td>{item?.created_date}</td>
+                    <td>{item?.role_state}</td>
+                    <td>{item?.role_id} </td>
+                    <td className="edit-del-logo">
+                      <EditRoleModal
+                        item={item}
+                        index={(currentPage - 1) * itemsPerPage + key}
+                      />
+                      <DeleteModal uniqID={item.uniq_id} />
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
           <Pagination

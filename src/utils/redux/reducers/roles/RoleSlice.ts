@@ -29,15 +29,9 @@ const RoleSlice = createSlice({
       state.filter_data.push(action.payload);
     },
     editRole(state, action) {
-      const updatedRole = action.payload;
-
-      const existingRoleIndex = state.data.findIndex(
-        (role: any) => role.uniq_id === updatedRole.uniq_id
-      );
-
-      if (existingRoleIndex !== -1) {
-        state.data[existingRoleIndex] = updatedRole;
-        state.filter_data[existingRoleIndex] = updatedRole;
+      if (action.payload.index !== -1) {
+        state.data[action.payload.index] = action.payload.data;
+        state.filter_data[action.payload.index] = action.payload.data;
       }
     },
     deleteRole(state, action) {

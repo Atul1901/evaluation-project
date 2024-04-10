@@ -53,9 +53,6 @@ function Signin() {
       ...errorMessage,
       ["wrongPassword"]: "Please enter valid credentials",
     });
-    console.log("false");
-    console.log("login-data >> ", login_data);
-    console.log("input data > ", inputData);
   };
 
   return (

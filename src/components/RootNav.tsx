@@ -4,9 +4,8 @@ import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 
 const Root: FC<{ Component: FC }> = ({ Component }) => {
-  let location = useLocation(); // current url
+  let location = useLocation();
   const path = location.pathname;
-  console.log("path ", location.pathname);
 
   const noSidebarPages = ["/signup", "/signin", "/"];
 
