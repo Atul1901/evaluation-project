@@ -86,6 +86,10 @@
 .place-input-sign::placeholder {
   font-size: 16px;
   color: #a7a3ff;
+  font-family: Poppins;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
 }
 
 .reg-button {
@@ -93,7 +97,7 @@
   padding: 14px 60px 14px 61px;
   justify-content: center;
   border-radius: 6px;
-  font-family: Montserrat;
+  font-family: Poppins;
   opacity: 0px;
   background: #4d47c3;
   color: white;

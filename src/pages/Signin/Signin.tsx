@@ -135,7 +135,7 @@ function Signin() {
           </div>
 
           <Typography component="div" sx={[styles.forgetPass]}>
-            Forgor password ?
+            Forgot password ?
           </Typography>
 
           {errorMessage.wrongPassword && (
@@ -173,35 +173,35 @@ const styles = {
 
   signUpText: {
     color: "black",
-    fontFamily: "Prompt",
+    fontFamily: "Poppins",
     fontWeight: 600,
     fontSize: "54px",
   },
 
   exploreText: {
     color: "black",
-    fontFamily: "Prompt",
+    fontFamily: "Poppins",
     fontWeight: 500,
     fontSize: "30px",
   },
 
   infoText: {
     color: "black",
-    fontFamily: "Prompt",
+    fontFamily: "Poppins",
     fontWeight: 400,
     fontSize: "20px",
   },
 
   signUpTitle: {
     color: "black",
-    fontFamily: "Prompt",
+    fontFamily: "Poppins",
     fontWeight: 500,
     fontSize: "32px",
     marginBottom: "10px",
   },
   forgetPass: {
     color: "#B5B5B5",
-    fontFamily: "Prompt",
+    fontFamily: "Poppins",
     fontWeight: 400,
     fontSize: "16px",
     marginTop: "10px",

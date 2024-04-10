@@ -209,40 +209,41 @@ const styles = {
 
   signUpText: {
     color: "black",
-    fontFamily: "Prompt",
+    fontFamily: "Poppins",
     fontWeight: 600,
     fontSize: "54px",
   },
 
   exploreText: {
     color: "black",
-    fontFamily: "Prompt",
+    fontFamily: "Poppins",
     fontWeight: 500,
     fontSize: "30px",
   },
 
   infoText: {
     color: "black",
-    fontFamily: "Prompt",
+    fontFamily: "Poppins",
     fontWeight: 400,
     fontSize: "20px",
   },
 
   signUpTitle: {
     color: "black",
-    fontFamily: "Prompt",
+    fontFamily: "Poppins",
     fontWeight: 500,
     fontSize: "32px",
     marginBottom: "10px",
   },
   tncText: {
     color: "#B5B5B5",
-    fontFamily: "Prompt",
+    fontFamily: "Poppins",
     fontWeight: 400,
     fontSize: "16px",
   },
   continueText: {
     color: "#B5B5B5",
+    fontFamily: "Poppins",
     fontSize: "16px",
     textAlign: "center",
     marginTop: "20px",
