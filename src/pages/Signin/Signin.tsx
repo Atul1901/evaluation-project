@@ -1,9 +1,8 @@
-import { Toolbar, IconButton, Typography, Checkbox } from "@mui/material";
+import { Toolbar, IconButton, Typography } from "@mui/material";
 import "./styles.css";
 import Logo from "../../utils/assets/logos/Logo.png";
 import Person from "../../utils/assets/logos/person.png";
 import Social from "../../utils/assets/logos/social.png";
-import DatePicking from "../../components/DatePicking";
 import React from "react";
 import { checkValidation } from "../../utils/helpers";
 import { login_users } from "../../utils/redux/reducers/roles/RoleSlice";

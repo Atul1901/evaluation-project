@@ -1,9 +1,7 @@
 import { Toolbar, IconButton, Typography, Checkbox } from "@mui/material";
-
 import Logo from "../../utils/assets/logos/Logo.png";
 import Person from "../../utils/assets/logos/person.png";
 import Social from "../../utils/assets/logos/social.png";
-import DatePicking from "../../components/DatePicking";
 import React from "react";
 import { checkValidation } from "../../utils/helpers";
 import { useDispatch } from "react-redux";
@@ -142,13 +140,6 @@ function Signup() {
             {errorMessage.emailId && (
               <p className="error-text">{errorMessage.emailId}</p>
             )}
-            {/* <input
-              type="text"
-              onChange={(e) => onHandleChange(e, "dob")}
-              className={"place-input-sign"}
-              placeholder="DOB"
-            ></input> */}
-            {/* <DatePicking></DatePicking> */}
             <input
               placeholder="DOB"
               className={"place-input-sign"}
