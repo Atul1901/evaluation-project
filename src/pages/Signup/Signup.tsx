@@ -239,7 +239,7 @@ const styles = {
     color: "#B5B5B5",
     fontFamily: "Poppins",
     fontWeight: 400,
-    fontSize: "16px",
+    fontSize: "14px",
   },
   continueText: {
     color: "#B5B5B5",
